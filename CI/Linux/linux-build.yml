@@ -143,21 +143,3 @@ steps:
     condition: eq(variables['packager'],'rpm')
     env:
       GIT_COMMIT: $(Build.SourceVersion)
-
-  - task: CopyFilesOverSSH@0
-    inputs:
-      sshEndpoint: 'Azure on Sandor'
-      sourceFolder: './standard_package'
-      contents: '*'
-      targetFolder: 'synergy-core/v1-core-standard/$(SYNERGY_VERSION)/$(SYNERGY_VERSION_STAGE)/b$(SYNERGY_VERSION_BUILD)-$(SYNERGY_REVISION)/'
-      readyTimeout: '20000'
-    displayName: 'Send standard Package to sandor'
-
-  - task: CopyFilesOverSSH@0
-    inputs:
-      sshEndpoint: 'Azure on Sandor'
-      sourceFolder: './enterprise_package'
-      contents: '*'
-      targetFolder: 'synergy-core/v1-core-enterprise/$(SYNERGY_VERSION)/$(SYNERGY_VERSION_STAGE)/b$(SYNERGY_VERSION_BUILD)-$(SYNERGY_REVISION)/'
-      readyTimeout: '20000'
-    displayName: 'Send enterprise Package to sandor'
