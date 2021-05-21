@@ -163,6 +163,12 @@ try {
    let gitVersion = new Version(core.getInput('previous-build'));
    let cmakeVersion = new Version(getVersionFromFile());
 
+   let releases = await octokit.request('GET /repos/{owner}/{repo}/releases', {
+      owner: 'symless',
+      repo: 'synergy-core'
+   })
+   console.log('INFO: Releases -> ' + releases);
+
    console.log('INFO: Version from Git: <' + gitVersion.toString() + '>');
    console.log('INFO: Version from cmake: <' + cmakeVersion.toString() + '>');
 
