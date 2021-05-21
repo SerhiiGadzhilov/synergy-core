@@ -1,5 +1,5 @@
 const core = require('@actions/core');
-const octokit = require('@octokit/core');
+const { Octokit } = require("@octokit/core");
 const fs = require('fs');
 
 function VersionPart(part) {
@@ -164,6 +164,7 @@ try {
    let gitVersion = new Version(core.getInput('previous-build'));
    let cmakeVersion = new Version(getVersionFromFile());
 
+   let octokit = new Octokit({});
    let releases = await octokit.request('GET /repos/{owner}/{repo}/releases', {
       owner: 'symless',
       repo: 'synergy-core'
