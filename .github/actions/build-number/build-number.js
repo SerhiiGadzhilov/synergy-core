@@ -1,4 +1,5 @@
 const core = require('@actions/core');
+const octokit = require('@octokit/core');
 const fs = require('fs');
 
 function VersionPart(part) {
