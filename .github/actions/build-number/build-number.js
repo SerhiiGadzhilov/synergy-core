@@ -190,7 +190,7 @@ function getVersionFromFile(){
    let patch = getOptionValue(options, 'SYNERGY_VERSION_PATCH');
    let stage = getOptionValue(options, 'SYNERGY_VERSION_STAGE');
 
-   return new Version(major + '.' + minor + '.' + patch + '-' + stage);
+   return new Version((major + '.' + minor + '.' + patch + '-' + stage));
 }
 
 async function main()
