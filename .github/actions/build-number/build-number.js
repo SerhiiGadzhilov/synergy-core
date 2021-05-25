@@ -95,9 +95,9 @@ function Version(version) {
    }
 
    function init() {
-      if (version != "")
+      if (version)
       {
-         let versionParts = version.split(PARTS_DELIMITER);
+         let versionParts = version.toString().split(PARTS_DELIMITER);
 
          if (versionParts.length == 3) {
             m_major.setPart(versionParts[0]);
