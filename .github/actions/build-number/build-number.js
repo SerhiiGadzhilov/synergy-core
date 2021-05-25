@@ -169,7 +169,7 @@ async function getVersionApi()
 
 async function getVersionsFromGithub(cmakeVersion)
 {
-   let gitVersion = new Version();
+   let gitVersion = new Version("");
    let versions = await getVersionApi();
 
    for (let i = 0; i < versions.length; ++i) {
