@@ -95,7 +95,7 @@ function Version(version) {
    }
 
    function init() {
-      if (version)
+      if (version != "")
       {
          let versionParts = version.split(PARTS_DELIMITER);
 
