@@ -97,7 +97,7 @@ function Version(version) {
    function init() {
       if (version)
       {
-         let versionParts = version.toString().split(PARTS_DELIMITER);
+         let versionParts = version.split(PARTS_DELIMITER);
 
          if (versionParts.length == 3) {
             m_major.setPart(versionParts[0]);
@@ -113,7 +113,7 @@ function Version(version) {
             m_build.setPart(versionParts[3]);
          }
          else {
-            core.setFailed('ERROR: previous-build contains wrong version number <' + version + '>');
+            core.setFailed('ERROR: wrong version number <' + version + '>');
          }
       }
    }
@@ -169,11 +169,11 @@ async function getVersionApi()
 
 async function getVersionsFromGithub(cmakeVersion)
 {
-   let gitVersion = new Version("");
+   let gitVersion = new Version();
    let versions = await getVersionApi();
 
    for (let i = 0; i < versions.length; ++i) {
-      let version = new Version(versions[i]);
+      let version = new Version(versions[i].tag_name);
       if (version.isSamePatch(cmakeVersion)) {
          gitVersion = version;
          break;
@@ -190,7 +190,7 @@ function getVersionFromFile(){
    let patch = getOptionValue(options, 'SYNERGY_VERSION_PATCH');
    let stage = getOptionValue(options, 'SYNERGY_VERSION_STAGE');
 
-   return new Version((major + '.' + minor + '.' + patch + '-' + stage));
+   return new Version(major + '.' + minor + '.' + patch + '-' + stage);
 }
 
 async function main()
